@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: "no"
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app123
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  server:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "postgresql://app:app123@db:5432/app_db"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

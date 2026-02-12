@@ -3,7 +3,9 @@ export interface User {
   email: string;
   name: string;
   createdAt: Date;
+  businessStats: BusinessStats;
 }
+
 
 export interface BusinessStats {
   totalRevenue: number;
