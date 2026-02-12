@@ -1,36 +1,13 @@
 {
   "compilerOptions": {
-    /* File Layout */
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "./dist",
-    "baseUrl": ".", 
-    "paths": {
-      "@bizora/shared": ["../../packages/shared/types/index"]
-    },
-
-    /* Environment Settings */
-    "module": "nodenext",
-    "target": "esnext",
-    "lib": ["esnext"],
-    "types": ["node"],
-
-    /* Other Outputs */
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    /* Stricter Typechecking Options */
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
-    /* Recommended Options */
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+    "rootDir": "../../", // חשוב בגלל ה-Monorepo
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
+  }
 }

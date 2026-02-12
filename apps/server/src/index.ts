@@ -1,12 +1,8 @@
-import type { User } from '@bizora/shared';
+import express from 'express';
+const app = express();
 
+app.get('/', (req, res) => res.send('Server is Up!'));
 
-
-const user:User = {
-    id: '1',
-    email: 'test@test.com',
-    name: 'Test User',
-    createdAt: new Date(),
-} ;
-
-console.log(user);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
