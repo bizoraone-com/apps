@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prisma – Local Development Guide
 
-## Getting Started
+## 🔄 Updating the Database
 
-First, run the development server:
+### 1️⃣ Edit `schema.prisma`
+
+### 2️⃣ Run Migration
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx prisma migrate dev --name change-description
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**This will:**
+- Create a migration
+- Update the local database
+- Regenerate Prisma Client
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔁 Regenerate Client (if needed)
 
-## Learn More
+```bash
+npx prisma generate
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 If the Database Was Modified Manually
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If someone changed the database directly (pgAdmin / SQL), run:
 
-## Deploy on Vercel
+```bash
+npx prisma db pull
+npx prisma generate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> ⚠️ **Warning:** Manual database changes should be avoided. Prefer migrations.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## ✅ Rules
+
+- Always update `schema.prisma`
+- Do not modify the database manually
+- Do not write SQL manually for regular changes
